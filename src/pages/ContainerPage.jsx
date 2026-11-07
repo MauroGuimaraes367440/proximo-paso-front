@@ -1,13 +1,12 @@
-import { Link, Outlet } from 'react-router'
+import { Outlet } from 'react-router'
+import Header from '../components/layout/Header'
 
 const ContainerPage = () => {
   return (
     <>
-      <header>
-        <Link to="/">Próximo Paso</Link>
-      </header>
+      <Header />
 
-      <main>
+      <main className="contenedor">
         <Outlet />
       </main>
     </>

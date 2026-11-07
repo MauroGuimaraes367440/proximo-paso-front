@@ -1,5 +1,12 @@
+import AuthPanel from '../../components/auth/AuthPanel'
+import LoginForm from '../../components/login/LoginForm'
+
 const LoginPage = () => {
-  return <h2>Login</h2>
+  return (
+    <AuthPanel titulo="Iniciar sesión" subtitulo="Ingresá para ver tus postulaciones.">
+      <LoginForm />
+    </AuthPanel>
+  )
 }
 
 export default LoginPage
