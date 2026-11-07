@@ -1,19 +1,4 @@
-/* ===== Header ===== */
-.header {
-  background: var(--color-superficie);
-  border-bottom: 1px solid var(--color-borde);
-}
-
-.header__contenido {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0.85rem 1rem;
-}
-
+/* ===== Marca (logo + nombre) ===== */
 .marca {
   display: flex;
   align-items: center;
@@ -34,37 +19,157 @@
   color: #fff;
 }
 
-.header__nav {
-  display: flex;
-  gap: 1rem;
-  flex: 1;
+/* ===== Header de las páginas sin sesión ===== */
+.header {
+  background: var(--color-superficie);
+  border-bottom: 1px solid var(--color-borde);
 }
 
-.header__nav a {
-  color: var(--color-texto-suave);
-  text-decoration: none;
+.header__contenido {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.85rem 1rem;
 }
 
-/* NavLink agrega la clase "active" a la ruta actual */
-.header__nav a.active {
-  color: var(--color-primario);
-}
-
-.header__usuario {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.header__nombre {
-  font-weight: 600;
-}
-
-/* ===== Contenedor principal ===== */
 .contenedor {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem 1rem;
+}
+
+/* ===== Diseño con sesión: barra lateral + contenido ===== */
+.app {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.25rem 1rem;
+  background: var(--color-superficie);
+  border-right: 1px solid var(--color-borde);
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.sidebar__enlace {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radio);
+  color: var(--color-texto-suave);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.sidebar__enlace:hover {
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* NavLink agrega la clase "active" al enlace de la página actual */
+.sidebar__enlace.active {
+  background: var(--color-primario-suave);
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+.sidebar__usuario {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-borde);
+}
+
+.sidebar__datos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar__nombre {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--color-primario-suave);
+  color: var(--color-primario);
+  font-weight: 700;
+}
+
+.app__contenido {
+  width: 100%;
+  max-width: 1100px;
+  padding: 2rem 2.5rem;
+}
+
+/* ===== Encabezado de cada página ===== */
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.encabezado p {
+  margin: 0;
+}
+
+.encabezado__acciones {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ===== Tarjetas y estados vacíos ===== */
+.tarjeta {
+  padding: 1.5rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 14px;
+}
+
+.vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--color-texto-suave);
+}
+
+.vacio p {
+  margin: 0;
 }
 
 /* ===== Login y registro ===== */
@@ -146,8 +251,41 @@
     display: none;
   }
 
-  .header__nav {
+  /* La barra lateral pasa a ser una barra superior */
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    z-index: 10;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem 0.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-borde);
+  }
+
+  .sidebar__nav {
     order: 3;
     flex-basis: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .sidebar__usuario {
+    margin-left: auto;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .sidebar__datos {
+    display: none;
+  }
+
+  .app__contenido {
+    padding: 1.5rem 1rem;
   }
 }

@@ -5,9 +5,13 @@ import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 import store from './store/store'
 import ContainerPage from './pages/ContainerPage'
+import AppLayout from './pages/AppLayout'
 import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
 import DashboardPage from './pages/dashboard/DashboardPage'
+import PostulacionesPage from './pages/postulaciones/PostulacionesPage'
+import OfertasPage from './pages/ofertas/OfertasPage'
+import CategoriasPage from './pages/categorias/CategoriasPage'
 import NotFoundPage from './pages/NotFoundPage'
 import ProtectedRoute from './app/guards/ProtectedRoute'
 import PublicRoute from './app/guards/PublicRoute'
@@ -17,16 +21,26 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ContainerPage />}>
-            <Route element={<PublicRoute />}>
-              <Route index element={<LoginPage />} />
-              <Route path="registro" element={<RegisterPage />} />
+          {/* Sin sesión: header simple arriba */}
+          <Route element={<PublicRoute />}>
+            <Route element={<ContainerPage />}>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/registro" element={<RegisterPage />} />
             </Route>
+          </Route>
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="dashboard" element={<DashboardPage />} />
+          {/* Con sesión: barra lateral */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppLayout />}>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/postulaciones" element={<PostulacionesPage />} />
+              <Route path="/ofertas" element={<OfertasPage />} />
+              <Route path="/categorias" element={<CategoriasPage />} />
             </Route>
+          </Route>
 
+          {/* Cualquier otra dirección */}
+          <Route element={<ContainerPage />}>
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

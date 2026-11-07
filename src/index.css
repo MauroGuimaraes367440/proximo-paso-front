@@ -107,6 +107,25 @@ a {
   width: 100%;
 }
 
+/* Botón que es solo un ícono (ej: cerrar sesión) */
+.btn-icono {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio);
+  background: transparent;
+  color: var(--color-texto-suave);
+  cursor: pointer;
+}
+
+.btn-icono:hover {
+  background: var(--color-fondo);
+  color: var(--color-error);
+}
+
 /* ===== Formularios ===== */
 .formulario {
   display: flex;

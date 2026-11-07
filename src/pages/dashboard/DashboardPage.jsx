@@ -1,12 +1,17 @@
 import { useSelector } from 'react-redux'
+import EncabezadoPagina from '../../components/common/EncabezadoPagina'
+import EnConstruccion from '../../components/common/EnConstruccion'
 
 const DashboardPage = () => {
   const usuario = useSelector(state => state.auth.usuario)
 
   return (
     <section>
-      <h1>Hola, {usuario.username}</h1>
-      <p className="texto-suave">Acá vas a ver tus postulaciones, tu uso del plan y estadísticas.</p>
+      <EncabezadoPagina
+        titulo={`Hola, ${usuario.username}`}
+        descripcion="Tu uso del plan, estadísticas y últimas postulaciones."
+      />
+      <EnConstruccion />
     </section>
   )
 }
