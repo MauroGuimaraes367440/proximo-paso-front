@@ -1,10 +1,8 @@
-import EstadoBadge from './EstadoBadge'
-import { fechaDesdeId, formatearFecha } from '../../utils/fechas'
-import { capitalizar } from '../../utils/textos'
+import FilaPostulacion from './FilaPostulacion'
 
-// Solo muestra: recibe la lista por props y dibuja una fila por postulación.
-// data-label lo usa el CSS en celular, donde cada fila se ve como tarjeta
-const TablaPostulaciones = ({ postulaciones }) => {
+// Arma la tabla y dibuja una FilaPostulacion por cada postulación.
+// data-label (en cada fila) lo usa el CSS en celular, donde cada fila se ve como tarjeta
+const TablaPostulaciones = ({ postulaciones, onEliminada }) => {
   return (
     <div className="tabla-contenedor">
       <table className="tabla">
@@ -15,20 +13,16 @@ const TablaPostulaciones = ({ postulaciones }) => {
             <th>Categoría</th>
             <th>Estado</th>
             <th>Agregada</th>
+            <th><span className="solo-lectores">Acciones</span></th>
           </tr>
         </thead>
         <tbody>
           {postulaciones.map(postulacion => (
-            <tr key={postulacion._id}>
-              <td data-label="Puesto" className="tabla__principal">{postulacion.puesto}</td>
-              <td data-label="Empresa">{postulacion.empresa}</td>
-              {/* Si la categoría fue borrada, populate devuelve null */}
-              <td data-label="Categoría">{postulacion.categoria ? capitalizar(postulacion.categoria.nombre) : 'Sin categoría'}</td>
-              <td data-label="Estado"><EstadoBadge estado={postulacion.estado} /></td>
-              <td data-label="Agregada" className="texto-suave">
-                {formatearFecha(fechaDesdeId(postulacion._id))}
-              </td>
-            </tr>
+            <FilaPostulacion
+              key={postulacion._id}
+              postulacion={postulacion}
+              onEliminada={onEliminada}
+            />
           ))}
         </tbody>
       </table>

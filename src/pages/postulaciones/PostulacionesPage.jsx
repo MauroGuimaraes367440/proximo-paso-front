@@ -29,6 +29,8 @@ const PostulacionesPage = () => {
 
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
+  // Contador que se suma para volver a pedir la lista (ej: después de borrar)
+  const [recargas, setRecargas] = useState(0)
 
   // Las categorías se piden una sola vez: si ya están en Redux, no se vuelven a pedir
   useEffect(() => {
@@ -66,7 +68,7 @@ const PostulacionesPage = () => {
       }
     }
     cargar()
-  }, [paginaPedida, estado, categoria, dispatch])
+  }, [paginaPedida, estado, categoria, recargas, dispatch])
 
   // Copia los parámetros actuales, cambia uno y vuelve a la página 1
   const cambiarFiltro = (nombre, valor) => {
@@ -89,6 +91,16 @@ const PostulacionesPage = () => {
     const nuevos = new URLSearchParams(searchParams)
     nuevos.set('page', nueva)
     setSearchParams(nuevos)
+  }
+
+  // Si se borró la última fila de una página que no es la primera, se va a la anterior.
+  // Si no, se vuelve a pedir la misma página (así se actualizan el total y la paginación)
+  const alEliminar = () => {
+    if (lista.length === 1 && paginaPedida > 1) {
+      cambiarPagina(paginaPedida - 1)
+    } else {
+      setRecargas(recargas + 1)
+    }
   }
 
   const hayFiltros = estado !== '' || categoria !== ''
@@ -132,7 +144,7 @@ const PostulacionesPage = () => {
 
       {!cargando && lista.length > 0 && (
         <>
-          <TablaPostulaciones postulaciones={lista} />
+          <TablaPostulaciones postulaciones={lista} onEliminada={alEliminar} />
           <Paginacion page={page} totalPages={totalPages} onCambiar={cambiarPagina} />
         </>
       )}

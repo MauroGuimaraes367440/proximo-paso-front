@@ -58,6 +58,16 @@ a {
   color: var(--color-texto-suave);
 }
 
+/* Texto que no se ve en pantalla pero sí leen los lectores de pantalla */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 /* ===== Botones ===== */
 .btn {
   display: inline-flex;
@@ -96,6 +106,15 @@ a {
 
 .btn--secundario:hover:not(:disabled) {
   border-color: var(--color-texto-suave);
+}
+
+.btn--peligro {
+  background: var(--color-error);
+  color: #fff;
+}
+
+.btn--peligro:hover:not(:disabled) {
+  background: #8f1c13;
 }
 
 .btn--chico {

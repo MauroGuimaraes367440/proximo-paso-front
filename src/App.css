@@ -227,6 +227,20 @@
   font-weight: 600;
 }
 
+.tabla__acciones {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.confirmar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 /* ===== Estados de una postulación ===== */
 .estado {
   display: inline-flex;
@@ -429,5 +443,15 @@
     font-size: 0.85rem;
     font-weight: 400;
     color: var(--color-texto-suave);
+  }
+
+  /* Las acciones no llevan título: van alineadas a la derecha */
+  .tabla td.tabla__acciones {
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .tabla td.tabla__acciones::before {
+    content: none;
   }
 }
