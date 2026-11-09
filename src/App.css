@@ -172,6 +172,97 @@
   margin: 0;
 }
 
+/* ===== Filtros ===== */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.filtros .campo {
+  width: 200px;
+}
+
+/* ===== Tablas ===== */
+.tabla-contenedor {
+  overflow-x: auto;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 14px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tabla th {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-texto-suave);
+  background: var(--color-fondo);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla tbody tr + tr td {
+  border-top: 1px solid var(--color-borde);
+}
+
+.tabla tbody tr:hover {
+  background: #fafbfb;
+}
+
+.tabla__principal {
+  font-weight: 600;
+}
+
+/* ===== Estados de una postulación ===== */
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* El puntito de color antes del texto */
+.estado::before {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.estado--guardada { background: #eef1f3; color: #4b5a63; }
+.estado--enviada { background: #e7f0fd; color: #1d5fbf; }
+.estado--entrevista { background: #fdf3dc; color: #9a6400; }
+.estado--aceptada { background: #e3f6ea; color: #17803d; }
+.estado--rechazada { background: var(--color-error-suave); color: var(--color-error); }
+
+/* ===== Paginación ===== */
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
 /* ===== Login y registro ===== */
 .auth {
   display: grid;
@@ -252,8 +343,10 @@
   }
 
   /* La barra lateral pasa a ser una barra superior */
+  /* Una columna; la fila de la barra mide lo justo y el contenido ocupa el resto */
   .app {
     grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
   }
 
   .sidebar {
@@ -287,5 +380,54 @@
 
   .app__contenido {
     padding: 1.5rem 1rem;
+  }
+
+  /* Los dos filtros comparten el ancho */
+  .filtros .campo {
+    flex: 1;
+    width: auto;
+    min-width: 140px;
+  }
+
+  /* La tabla se convierte en una lista de tarjetas */
+  .tabla-contenedor {
+    background: none;
+    border: 0;
+  }
+
+  .tabla thead {
+    display: none;
+  }
+
+  .tabla tbody {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .tabla tbody tr {
+    display: grid;
+    padding: 0.75rem 1rem;
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: 14px;
+  }
+
+  .tabla tbody tr + tr td {
+    border-top: 0;
+  }
+
+  .tabla td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.35rem 0;
+  }
+
+  /* Cada celda muestra su título a la izquierda, sacado de data-label */
+  .tabla td::before {
+    content: attr(data-label);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-texto-suave);
   }
 }
