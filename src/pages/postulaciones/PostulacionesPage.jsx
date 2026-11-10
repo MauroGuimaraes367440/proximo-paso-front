@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router'
-import { toast } from 'react-toastify'
-import { BriefcaseBusiness, SearchX } from 'lucide-react'
+import { Link, useSearchParams } from 'react-router'
+import { BriefcaseBusiness, Plus, SearchX } from 'lucide-react'
 import EncabezadoPagina from '../../components/common/EncabezadoPagina'
 import AlertaError from '../../components/common/AlertaError'
 import Paginacion from '../../components/common/Paginacion'
 import TablaPostulaciones from '../../components/postulaciones/TablaPostulaciones'
 import FiltrosPostulaciones from '../../components/postulaciones/FiltrosPostulaciones'
 import { listarPostulacionesService } from '../../services/postulaciones.service'
-import { listarCategoriasService } from '../../services/categorias.service'
 import { setPostulaciones } from '../../features/postulaciones/postulaciones.slice'
-import { setCategorias } from '../../features/categorias/categorias.slice'
 import { obtenerError } from '../../utils/errores'
 
 const POR_PAGINA = 10
@@ -31,21 +28,6 @@ const PostulacionesPage = () => {
   const [error, setError] = useState(null)
   // Contador que se suma para volver a pedir la lista (ej: después de borrar)
   const [recargas, setRecargas] = useState(0)
-
-  // Las categorías se piden una sola vez: si ya están en Redux, no se vuelven a pedir
-  useEffect(() => {
-    if (categorias.length > 0) return
-
-    const cargarCategorias = async () => {
-      try {
-        const datos = await listarCategoriasService()
-        dispatch(setCategorias(datos))
-      } catch {
-        toast.error('No se pudieron cargar las categorías')
-      }
-    }
-    cargarCategorias()
-  }, [categorias.length, dispatch])
 
   // Se vuelve a ejecutar cada vez que cambia la página o algún filtro
   useEffect(() => {
@@ -119,7 +101,12 @@ const PostulacionesPage = () => {
 
   return (
     <section>
-      <EncabezadoPagina titulo="Postulaciones" descripcion={descripcion} />
+      <EncabezadoPagina titulo="Postulaciones" descripcion={descripcion}>
+        <Link to="/postulaciones/nueva" className="btn btn--primario">
+          <Plus size={18} aria-hidden="true" />
+          Nueva postulación
+        </Link>
+      </EncabezadoPagina>
 
       <FiltrosPostulaciones
         estado={estado}
@@ -143,6 +130,7 @@ const PostulacionesPage = () => {
           <div className="tarjeta vacio">
             <BriefcaseBusiness size={32} aria-hidden="true" />
             <p>Todavía no tenés postulaciones.</p>
+            <Link to="/postulaciones/nueva" className="btn btn--primario btn--chico">Agregar la primera</Link>
           </div>
         )
       )}

@@ -131,6 +131,11 @@
   padding: 2rem 2.5rem;
 }
 
+/* Páginas con un formulario: más angostas para que se lean mejor */
+.pagina-angosta {
+  max-width: 760px;
+}
+
 /* ===== Encabezado de cada página ===== */
 .encabezado {
   display: flex;

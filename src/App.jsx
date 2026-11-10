@@ -10,6 +10,7 @@ import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
 import DashboardPage from './pages/dashboard/DashboardPage'
 import PostulacionesPage from './pages/postulaciones/PostulacionesPage'
+import NuevaPostulacionPage from './pages/postulaciones/NuevaPostulacionPage'
 import OfertasPage from './pages/ofertas/OfertasPage'
 import CategoriasPage from './pages/categorias/CategoriasPage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -34,6 +35,7 @@ function App() {
             <Route element={<AppLayout />}>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/postulaciones" element={<PostulacionesPage />} />
+              <Route path="/postulaciones/nueva" element={<NuevaPostulacionPage />} />
               <Route path="/ofertas" element={<OfertasPage />} />
               <Route path="/categorias" element={<CategoriasPage />} />
             </Route>
