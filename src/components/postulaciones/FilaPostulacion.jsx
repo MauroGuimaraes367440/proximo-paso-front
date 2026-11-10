@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 import { toast } from 'react-toastify'
 import { Pencil, Trash2 } from 'lucide-react'
 import EstadoBadge from './EstadoBadge'
@@ -45,7 +46,9 @@ const FilaPostulacion = ({ postulacion, onEliminada, onActualizada }) => {
 
   return (
     <tr>
-      <td data-label="Puesto" className="tabla__principal">{postulacion.puesto}</td>
+      <td data-label="Puesto" className="tabla__principal">
+        <Link to={`/postulaciones/${postulacion._id}`} className="enlace-fila">{postulacion.puesto}</Link>
+      </td>
       <td data-label="Empresa">{postulacion.empresa}</td>
       <td data-label="Categoría">
         {postulacion.categoria ? capitalizar(postulacion.categoria.nombre) : 'Sin categoría'}

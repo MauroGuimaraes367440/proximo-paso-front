@@ -27,3 +27,9 @@ export const eliminarPostulacionService = async (id) => {
   const res = await api.delete(`/postulaciones/${id}`)
   return res.data
 }
+
+// La API le pasa puesto, empresa y descripción a Groq y devuelve el texto generado
+export const generarPreparacionService = async (id) => {
+  const res = await api.post(`/postulaciones/${id}/preparacion`)
+  return res.data // { postulacionId, preparacion }
+}

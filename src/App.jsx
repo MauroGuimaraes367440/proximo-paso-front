@@ -11,6 +11,7 @@ import RegisterPage from './pages/register/RegisterPage'
 import DashboardPage from './pages/dashboard/DashboardPage'
 import PostulacionesPage from './pages/postulaciones/PostulacionesPage'
 import NuevaPostulacionPage from './pages/postulaciones/NuevaPostulacionPage'
+import DetallePostulacionPage from './pages/postulaciones/DetallePostulacionPage'
 import OfertasPage from './pages/ofertas/OfertasPage'
 import CategoriasPage from './pages/categorias/CategoriasPage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -36,6 +37,9 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/postulaciones" element={<PostulacionesPage />} />
               <Route path="/postulaciones/nueva" element={<NuevaPostulacionPage />} />
+              {/* :id es la parte variable. "/postulaciones/nueva" también encaja acá,
+                  pero React Router siempre prefiere la ruta fija antes que la variable */}
+              <Route path="/postulaciones/:id" element={<DetallePostulacionPage />} />
               <Route path="/ofertas" element={<OfertasPage />} />
               <Route path="/categorias" element={<CategoriasPage />} />
             </Route>
