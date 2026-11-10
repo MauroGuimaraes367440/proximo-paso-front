@@ -2,7 +2,7 @@ import FilaPostulacion from './FilaPostulacion'
 
 // Arma la tabla y dibuja una FilaPostulacion por cada postulación.
 // data-label (en cada fila) lo usa el CSS en celular, donde cada fila se ve como tarjeta
-const TablaPostulaciones = ({ postulaciones, onEliminada }) => {
+const TablaPostulaciones = ({ postulaciones, onEliminada, onActualizada }) => {
   return (
     <div className="tabla-contenedor">
       <table className="tabla">
@@ -22,6 +22,7 @@ const TablaPostulaciones = ({ postulaciones, onEliminada }) => {
               key={postulacion._id}
               postulacion={postulacion}
               onEliminada={onEliminada}
+              onActualizada={onActualizada}
             />
           ))}
         </tbody>

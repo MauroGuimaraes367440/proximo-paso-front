@@ -65,7 +65,7 @@ const Sidebar = () => {
         </div>
         <button
           type="button"
-          className="btn-icono"
+          className="btn-icono btn-icono--peligro"
           onClick={cerrarSesion}
           title="Cerrar sesión"
           aria-label="Cerrar sesión"

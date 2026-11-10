@@ -93,13 +93,18 @@ const PostulacionesPage = () => {
     setSearchParams(nuevos)
   }
 
+  // Vuelve a pedir la página actual con los mismos filtros
+  const recargar = () => {
+    setRecargas(recargas + 1)
+  }
+
   // Si se borró la última fila de una página que no es la primera, se va a la anterior.
-  // Si no, se vuelve a pedir la misma página (así se actualizan el total y la paginación)
+  // Si no, se recarga (así se actualizan el total y la paginación)
   const alEliminar = () => {
     if (lista.length === 1 && paginaPedida > 1) {
       cambiarPagina(paginaPedida - 1)
     } else {
-      setRecargas(recargas + 1)
+      recargar()
     }
   }
 
@@ -144,7 +149,7 @@ const PostulacionesPage = () => {
 
       {!cargando && lista.length > 0 && (
         <>
-          <TablaPostulaciones postulaciones={lista} onEliminada={alEliminar} />
+          <TablaPostulaciones postulaciones={lista} onEliminada={alEliminar} onActualizada={recargar} />
           <Paginacion page={page} totalPages={totalPages} onCambiar={cambiarPagina} />
         </>
       )}

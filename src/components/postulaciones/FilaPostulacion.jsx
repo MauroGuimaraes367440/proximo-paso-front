@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { Trash2 } from 'lucide-react'
+import { Pencil, Trash2 } from 'lucide-react'
 import EstadoBadge from './EstadoBadge'
+import FilaEdicionPostulacion from './FilaEdicionPostulacion'
 import { eliminarPostulacionService } from '../../services/postulaciones.service'
 import { obtenerError } from '../../utils/errores'
 import { fechaDesdeId, formatearFecha } from '../../utils/fechas'
 import { capitalizar } from '../../utils/textos'
 
-// Una fila de la tabla. Cada fila tiene su propio estado (si está confirmando el borrado)
-const FilaPostulacion = ({ postulacion, onEliminada }) => {
+// Una fila de la tabla. Cada fila tiene su propio estado (si se está editando o borrando)
+const FilaPostulacion = ({ postulacion, onEliminada, onActualizada }) => {
+  const [editando, setEditando] = useState(false)
   const [confirmando, setConfirmando] = useState(false)
   const [eliminando, setEliminando] = useState(false)
 
@@ -23,6 +25,22 @@ const FilaPostulacion = ({ postulacion, onEliminada }) => {
       setEliminando(false)
       setConfirmando(false)
     }
+  }
+
+  const alGuardar = () => {
+    setEditando(false)
+    onActualizada()
+  }
+
+  // En modo edición se dibuja la otra versión de la fila
+  if (editando) {
+    return (
+      <FilaEdicionPostulacion
+        postulacion={postulacion}
+        onCancelar={() => setEditando(false)}
+        onGuardada={alGuardar}
+      />
+    )
   }
 
   return (
@@ -48,15 +66,26 @@ const FilaPostulacion = ({ postulacion, onEliminada }) => {
             </button>
           </div>
         ) : (
-          <button
-            type="button"
-            className="btn-icono"
-            onClick={() => setConfirmando(true)}
-            title="Eliminar"
-            aria-label={`Eliminar postulación a ${postulacion.puesto}`}
-          >
-            <Trash2 size={18} />
-          </button>
+          <div className="confirmar">
+            <button
+              type="button"
+              className="btn-icono"
+              onClick={() => setEditando(true)}
+              title="Editar"
+              aria-label={`Editar postulación a ${postulacion.puesto}`}
+            >
+              <Pencil size={18} />
+            </button>
+            <button
+              type="button"
+              className="btn-icono btn-icono--peligro"
+              onClick={() => setConfirmando(true)}
+              title="Eliminar"
+              aria-label={`Eliminar postulación a ${postulacion.puesto}`}
+            >
+              <Trash2 size={18} />
+            </button>
+          </div>
         )}
       </td>
     </tr>

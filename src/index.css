@@ -142,6 +142,11 @@ a {
 
 .btn-icono:hover {
   background: var(--color-fondo);
+  color: var(--color-primario);
+}
+
+/* Variante para acciones destructivas (eliminar, salir) */
+.btn-icono--peligro:hover {
   color: var(--color-error);
 }
 

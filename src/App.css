@@ -233,6 +233,49 @@
   text-align: right;
 }
 
+/* Fila en modo edición */
+.tabla__fila--editando {
+  background: var(--color-primario-suave);
+}
+
+.tabla tbody tr.tabla__fila--editando:hover {
+  background: var(--color-primario-suave);
+}
+
+.tabla__fila--editando td {
+  vertical-align: top;
+  padding: 0.75rem 0.4rem;
+}
+
+.celda-edicion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.celda-edicion input,
+.celda-edicion select {
+  width: 100%;
+  min-width: 100px;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  background: var(--color-superficie);
+  font: inherit;
+  font-size: 0.9rem;
+  color: inherit;
+}
+
+.celda-edicion input:focus,
+.celda-edicion select:focus {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 1px;
+}
+
+.celda-edicion [aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+
 .confirmar {
   display: inline-flex;
   align-items: center;
@@ -453,5 +496,15 @@
 
   .tabla td.tabla__acciones::before {
     content: none;
+  }
+
+  /* En edición, el input ocupa el resto del ancho al lado del título */
+  .tabla__fila--editando td {
+    align-items: center;
+  }
+
+  .celda-edicion {
+    flex: 1;
+    max-width: 65%;
   }
 }
