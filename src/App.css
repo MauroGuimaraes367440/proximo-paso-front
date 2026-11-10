@@ -177,6 +177,68 @@
   margin: 0;
 }
 
+/* ===== Resumen ===== */
+.resumen {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.resumen > .btn {
+  justify-self: start;
+}
+
+.tarjeta__cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.uso__numero {
+  margin: 0.5rem 0 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Barra de uso: el fondo gris es el 100%, el relleno verde el porcentaje usado */
+.barra {
+  height: 0.6rem;
+  margin: 0.25rem 0 1.25rem;
+  border-radius: 999px;
+  background: var(--color-fondo);
+  overflow: hidden;
+}
+
+.barra__relleno {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-primario);
+  transition: width 0.4s;
+}
+
+.barra__relleno--lleno {
+  background: var(--color-error);
+}
+
+.cambio-plan {
+  padding: 1rem;
+  border-radius: var(--radio);
+  background: var(--color-premium-suave);
+}
+
+.cambio-plan p {
+  margin-bottom: 0.75rem;
+  color: var(--color-premium);
+}
+
+.grafico {
+  position: relative;
+  height: 260px;
+}
+
 /* ===== Filtros ===== */
 .filtros {
   display: flex;
@@ -532,7 +594,8 @@
     padding: 1.5rem 1rem;
   }
 
-  .detalle {
+  .detalle,
+  .resumen {
     grid-template-columns: 1fr;
   }
 

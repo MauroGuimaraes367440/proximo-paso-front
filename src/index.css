@@ -108,6 +108,15 @@ a {
   border-color: var(--color-texto-suave);
 }
 
+.btn--premium {
+  background: var(--color-premium);
+  color: #fff;
+}
+
+.btn--premium:hover:not(:disabled) {
+  background: #7c3a08;
+}
+
 .btn--peligro {
   background: var(--color-error);
   color: #fff;

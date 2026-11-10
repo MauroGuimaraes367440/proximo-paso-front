@@ -7,9 +7,7 @@ import AlertaError from '../../components/common/AlertaError'
 import PostulacionForm from '../../components/postulaciones/PostulacionForm'
 import { listarPostulacionesService } from '../../services/postulaciones.service'
 import { obtenerError } from '../../utils/errores'
-
-// Mismo límite que controla la API (postulaciones.services.js del backend)
-const LIMITE_PLUS = 4
+import { LIMITE_PLUS } from '../../utils/planes'
 
 const NuevaPostulacionPage = () => {
   const usuario = useSelector(state => state.auth.usuario)
