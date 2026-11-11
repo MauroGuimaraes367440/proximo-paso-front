@@ -1,17 +1,34 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router'
-import { Lock } from 'lucide-react'
+import { Link, useLocation } from 'react-router'
+import { Lock, Sparkles } from 'lucide-react'
 import EncabezadoPagina from '../../components/common/EncabezadoPagina'
 import AlertaError from '../../components/common/AlertaError'
 import PostulacionForm from '../../components/postulaciones/PostulacionForm'
 import { listarPostulacionesService } from '../../services/postulaciones.service'
 import { obtenerError } from '../../utils/errores'
 import { LIMITE_PLUS } from '../../utils/planes'
+import { limpiarHtml } from '../../utils/textos'
+
+// Convierte una oferta de Jooble en los valores iniciales del formulario.
+// slice() corta los textos al máximo que acepta la API
+const valoresDesdeOferta = (oferta) => ({
+  puesto: limpiarHtml(oferta.puesto).slice(0, 100),
+  empresa: limpiarHtml(oferta.empresa).slice(0, 100),
+  descripcion: limpiarHtml(oferta.descripcion).slice(0, 5000),
+  enlace: oferta.enlace || '',
+  notas: oferta.ubicacion ? `Ubicación: ${oferta.ubicacion}` : ''
+})
 
 const NuevaPostulacionPage = () => {
   const usuario = useSelector(state => state.auth.usuario)
   const esPlus = usuario.plan === 'plus'
+
+  // Si se llegó desde Ofertas con "Guardar como postulación", la oferta viene en el
+  // state de la navegación. Si se entró de otra forma (o se recargó), es undefined
+  const location = useLocation()
+  const oferta = location.state?.oferta
+  const valoresIniciales = oferta ? valoresDesdeOferta(oferta) : {}
 
   const [total, setTotal] = useState(0)
   const [verificando, setVerificando] = useState(esPlus)
@@ -62,7 +79,17 @@ const NuevaPostulacionPage = () => {
         </div>
       )}
 
-      {!verificando && !error && !limiteAlcanzado && <PostulacionForm />}
+      {!verificando && !error && !limiteAlcanzado && (
+        <>
+          {oferta && (
+            <p className="aviso-precarga">
+              <Sparkles size={16} aria-hidden="true" />
+              Datos precargados desde la oferta. Elegí una categoría y revisá antes de guardar.
+            </p>
+          )}
+          <PostulacionForm valoresIniciales={valoresIniciales} />
+        </>
+      )}
     </section>
   )
 }

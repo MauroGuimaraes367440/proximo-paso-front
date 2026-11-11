@@ -1,20 +1,35 @@
-/* ===== Variables de diseño: colores, radios y sombras de toda la app ===== */
+/* ===== Variables de diseño: colores, radios y sombras de toda la app (tema oscuro) ===== */
 :root {
-  --color-primario: #0f766e;
-  --color-primario-hover: #115e59;
-  --color-primario-suave: #e6f4f2;
-  --color-fondo: #f4f6f5;
-  --color-superficie: #ffffff;
-  --color-texto: #1d2a2f;
-  --color-texto-suave: #5b6970;
-  --color-borde: #d9e0de;
-  --color-error: #b42318;
-  --color-error-suave: #fdecea;
-  --color-premium: #9a4a0b;
-  --color-premium-suave: #fdf0d5;
+  /* Marca */
+  --color-primario: #8b5cf6;
+  --color-primario-hover: #7c3aed;
+  --color-primario-suave: rgb(139 92 246 / 14%);
+  --color-acento: #a78bfa;
+
+  /* Capas, de la más oscura a la más clara */
+  --color-fondo: #0b1120;       /* fondo de la página */
+  --color-superficie: #111827;  /* barra lateral, header, inputs */
+  --color-tarjeta: #1e293b;     /* tarjetas y tablas */
+  --color-tarjeta-hover: #243247;
+
+  /* Texto y bordes */
+  --color-texto: #f8fafc;
+  --color-texto-suave: #94a3b8;
+  --color-borde: #334155;
+
+  /* Estados */
+  --color-exito: #22c55e;
+  --color-error: #f87171;
+  --color-error-suave: rgb(248 113 113 / 12%);
+  --color-premium: #fbbf24;
+  --color-premium-suave: rgb(251 191 36 / 12%);
 
   --radio: 10px;
-  --sombra: 0 1px 2px rgb(16 24 40 / 6%), 0 6px 16px rgb(16 24 40 / 6%);
+  --sombra: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 25%);
+
+  /* Le avisa al navegador que el tema es oscuro: selects, scrollbars y el
+     selector de archivos nativos también se dibujan oscuros */
+  color-scheme: dark;
 
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 16px;
@@ -50,7 +65,7 @@ p {
 }
 
 a {
-  color: var(--color-primario);
+  color: var(--color-acento);
   font-weight: 500;
 }
 
@@ -81,7 +96,7 @@ a {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s, opacity 0.15s;
+  transition: background-color 0.15s, border-color 0.15s, opacity 0.15s, box-shadow 0.15s;
 }
 
 .btn:disabled {
@@ -96,6 +111,7 @@ a {
 
 .btn--primario:hover:not(:disabled) {
   background: var(--color-primario-hover);
+  box-shadow: 0 4px 14px rgb(139 92 246 / 35%);
 }
 
 .btn--secundario {
@@ -106,24 +122,25 @@ a {
 
 .btn--secundario:hover:not(:disabled) {
   border-color: var(--color-texto-suave);
+  background: var(--color-tarjeta-hover);
 }
 
 .btn--premium {
   background: var(--color-premium);
-  color: #fff;
+  color: #1a1203;
 }
 
 .btn--premium:hover:not(:disabled) {
-  background: #7c3a08;
+  background: #f59e0b;
 }
 
 .btn--peligro {
-  background: var(--color-error);
+  background: #dc2626;
   color: #fff;
 }
 
 .btn--peligro:hover:not(:disabled) {
-  background: #8f1c13;
+  background: #b91c1c;
 }
 
 .btn--chico {
@@ -150,12 +167,13 @@ a {
 }
 
 .btn-icono:hover {
-  background: var(--color-fondo);
-  color: var(--color-primario);
+  background: var(--color-primario-suave);
+  color: var(--color-acento);
 }
 
 /* Variante para acciones destructivas (eliminar, salir) */
 .btn-icono--peligro:hover {
+  background: var(--color-error-suave);
   color: var(--color-error);
 }
 
@@ -174,7 +192,8 @@ a {
 
 .campo label {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
+  color: #cbd5e1;
 }
 
 .campo input,
@@ -187,14 +206,26 @@ a {
   background: var(--color-superficie);
   font: inherit;
   color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: #64748b;
+}
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover {
+  border-color: #475569;
 }
 
 .campo input:focus,
 .campo select:focus,
 .campo textarea:focus {
-  outline: 2px solid var(--color-primario);
-  outline-offset: 1px;
+  outline: none;
   border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px var(--color-primario-suave);
 }
 
 .campo input[aria-invalid='true'] {
@@ -263,6 +294,7 @@ a {
 
 .alerta--error {
   background: var(--color-error-suave);
+  border: 1px solid rgb(248 113 113 / 30%);
   color: var(--color-error);
 }
 
@@ -278,7 +310,7 @@ a {
 
 .badge--plus {
   background: var(--color-primario-suave);
-  color: var(--color-primario);
+  color: var(--color-acento);
 }
 
 .badge--premium {
@@ -287,6 +319,6 @@ a {
 }
 
 .badge--admin {
-  background: var(--color-texto);
-  color: #fff;
+  background: rgb(248 250 252 / 10%);
+  color: var(--color-texto);
 }

@@ -15,7 +15,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: 8px;
-  background: var(--color-primario);
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
   color: #fff;
 }
 
@@ -77,14 +77,14 @@
 }
 
 .sidebar__enlace:hover {
-  background: var(--color-fondo);
+  background: var(--color-tarjeta);
   color: var(--color-texto);
 }
 
 /* NavLink agrega la clase "active" al enlace de la página actual */
 .sidebar__enlace.active {
   background: var(--color-primario-suave);
-  color: var(--color-primario);
+  color: var(--color-acento);
   font-weight: 600;
 }
 
@@ -121,7 +121,7 @@
   height: 2.25rem;
   border-radius: 50%;
   background: var(--color-primario-suave);
-  color: var(--color-primario);
+  color: var(--color-acento);
   font-weight: 700;
 }
 
@@ -158,9 +158,10 @@
 /* ===== Tarjetas y estados vacíos ===== */
 .tarjeta {
   padding: 1.5rem;
-  background: var(--color-superficie);
+  background: var(--color-tarjeta);
   border: 1px solid var(--color-borde);
   border-radius: 14px;
+  box-shadow: var(--sombra);
 }
 
 .vacio {
@@ -267,9 +268,16 @@
 
 .tarjeta-categoria {
   overflow: hidden;
-  background: var(--color-superficie);
+  background: var(--color-tarjeta);
   border: 1px solid var(--color-borde);
   border-radius: 14px;
+  box-shadow: var(--sombra);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.tarjeta-categoria:hover {
+  border-color: #475569;
+  transform: translateY(-2px);
 }
 
 .tarjeta-categoria__imagen {
@@ -314,6 +322,96 @@
   font-size: 0.85rem;
 }
 
+/* ===== Ofertas ===== */
+.buscador {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* El botón se alinea con los inputs, no con los labels */
+.buscador .btn {
+  margin-top: 1.6rem;
+}
+
+.resultados__cantidad {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.grilla-ofertas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.oferta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.oferta:hover {
+  border-color: #475569;
+  transform: translateY(-2px);
+}
+
+.oferta__puesto {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.oferta__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-texto-suave);
+}
+
+.oferta__datos span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Muestra solo las primeras 3 líneas del resumen */
+.oferta__resumen {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* margin-top: auto empuja los botones al fondo: todas las tarjetas quedan alineadas */
+.oferta__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/* Aviso en el alta cuando los datos vienen de una oferta */
+.aviso-precarga {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgb(139 92 246 / 35%);
+  border-radius: var(--radio);
+  background: var(--color-primario-suave);
+  color: var(--color-acento);
+  font-size: 0.9rem;
+}
+
 /* ===== Filtros ===== */
 .filtros {
   display: flex;
@@ -330,9 +428,10 @@
 /* ===== Tablas ===== */
 .tabla-contenedor {
   overflow-x: auto;
-  background: var(--color-superficie);
+  background: var(--color-tarjeta);
   border: 1px solid var(--color-borde);
   border-radius: 14px;
+  box-shadow: var(--sombra);
 }
 
 .tabla {
@@ -353,7 +452,7 @@
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--color-texto-suave);
-  background: var(--color-fondo);
+  background: var(--color-superficie);
   border-bottom: 1px solid var(--color-borde);
 }
 
@@ -361,8 +460,12 @@
   border-top: 1px solid var(--color-borde);
 }
 
+.tabla tbody tr {
+  transition: background-color 0.15s;
+}
+
 .tabla tbody tr:hover {
-  background: #fafbfb;
+  background: var(--color-tarjeta-hover);
 }
 
 .tabla__principal {
@@ -432,7 +535,7 @@
 }
 
 .enlace-fila:hover {
-  color: var(--color-primario);
+  color: var(--color-acento);
   text-decoration: underline;
 }
 
@@ -535,11 +638,11 @@
   background: currentColor;
 }
 
-.estado--guardada { background: #eef1f3; color: #4b5a63; }
-.estado--enviada { background: #e7f0fd; color: #1d5fbf; }
-.estado--entrevista { background: #fdf3dc; color: #9a6400; }
-.estado--aceptada { background: #e3f6ea; color: #17803d; }
-.estado--rechazada { background: var(--color-error-suave); color: var(--color-error); }
+.estado--guardada { background: rgb(148 163 184 / 15%); color: #cbd5e1; }
+.estado--enviada { background: rgb(59 130 246 / 15%); color: #93c5fd; }
+.estado--entrevista { background: rgb(245 158 11 / 15%); color: #fcd34d; }
+.estado--aceptada { background: rgb(34 197 94 / 15%); color: #86efac; }
+.estado--rechazada { background: var(--color-error-suave); color: #fca5a5; }
 
 /* ===== Paginación ===== */
 .paginacion {
@@ -587,9 +690,10 @@
 
 .auth__tarjeta {
   padding: 2rem;
-  background: var(--color-superficie);
+  background: var(--color-tarjeta);
   border-radius: 16px;
   box-shadow: var(--sombra);
+  border: 1px solid var(--color-borde);
 }
 
 .auth__subtitulo {
@@ -670,8 +774,13 @@
   }
 
   .detalle,
-  .resumen {
+  .resumen,
+  .buscador {
     grid-template-columns: 1fr;
+  }
+
+  .buscador .btn {
+    margin-top: 0;
   }
 
   /* Los dos filtros comparten el ancho */
@@ -685,6 +794,7 @@
   .tabla-contenedor {
     background: none;
     border: 0;
+    box-shadow: none;
   }
 
   .tabla thead {
@@ -699,7 +809,7 @@
   .tabla tbody tr {
     display: grid;
     padding: 0.75rem 1rem;
-    background: var(--color-superficie);
+    background: var(--color-tarjeta);
     border: 1px solid var(--color-borde);
     border-radius: 14px;
   }

@@ -22,7 +22,9 @@ const GraficoEstados = () => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'right'
+        position: 'right',
+        // Colores del tema oscuro (por defecto Chart.js usa gris sobre blanco)
+        labels: { color: '#cbd5e1', boxWidth: 12, padding: 14 }
       }
     }
   }
@@ -35,7 +37,8 @@ const GraficoEstados = () => {
         label: 'Postulaciones',
         data: ESTADOS.map(e => conteos[e.valor]),
         backgroundColor: ESTADOS.map(e => e.color),
-        borderWidth: 2
+        borderColor: '#1e293b', // mismo color que la tarjeta: separa los arcos
+        borderWidth: 3
       }
     ]
   }

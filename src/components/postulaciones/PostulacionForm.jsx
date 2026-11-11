@@ -11,7 +11,8 @@ import { obtenerError } from '../../utils/errores'
 import { ESTADOS } from '../../utils/estados'
 import { capitalizar } from '../../utils/textos'
 
-const PostulacionForm = () => {
+// valoresIniciales: datos opcionales para precargar (ej: desde una oferta de Jooble)
+const PostulacionForm = ({ valoresIniciales }) => {
   const puestoId = useId()
   const empresaId = useId()
   const categoriaId = useId()
@@ -34,7 +35,9 @@ const PostulacionForm = () => {
       estado: 'guardada',
       descripcion: '',
       enlace: '',
-      notas: ''
+      notas: '',
+      // Lo que venga en valoresIniciales pisa los valores vacíos de arriba
+      ...valoresIniciales
     }
   })
 
