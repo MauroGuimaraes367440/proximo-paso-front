@@ -6,6 +6,12 @@ export const listarCategoriasService = async () => {
   return res.data // [{ _id, nombre, imagenUrl }]
 }
 
+// Una sola categoría por id (con su imagen). La usa el detalle de una postulación
+export const obtenerCategoriaService = async (id) => {
+  const res = await api.get(`/categorias/${id}`)
+  return res.data // { _id, nombre, imagenUrl }
+}
+
 // --- Solo admin (la API responde 403 a un usuario común) ---
 
 export const crearCategoriaService = async (nombre) => {

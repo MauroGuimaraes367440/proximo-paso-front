@@ -7,11 +7,11 @@ import AlertaError from '../../components/common/AlertaError'
 import EstadoBadge from '../../components/postulaciones/EstadoBadge'
 import PreparacionBoton from '../../components/preparacion/PreparacionBoton'
 import PreparacionDisplay from '../../components/preparacion/PreparacionDisplay'
+import CategoriaPostulacion from '../../components/categorias/CategoriaPostulacion'
 import { obtenerPostulacionService } from '../../services/postulaciones.service'
 import { resetPreparacion } from '../../features/preparacion/preparacion.slice'
 import { obtenerError } from '../../utils/errores'
 import { fechaDesdeId, formatearFecha } from '../../utils/fechas'
-import { capitalizar } from '../../utils/textos'
 
 const DetallePostulacionPage = () => {
   // useParams lee la parte variable de la ruta: /postulaciones/:id → { id: '690d...' }
@@ -88,7 +88,7 @@ const DetallePostulacionPage = () => {
               <h2 className="tarjeta__titulo">Datos</h2>
               <dl className="datos">
                 <dt>Categoría</dt>
-                <dd>{postulacion.categoria ? capitalizar(postulacion.categoria.nombre) : 'Sin categoría'}</dd>
+                <dd><CategoriaPostulacion categoria={postulacion.categoria} /></dd>
                 <dt>Agregada</dt>
                 <dd>{formatearFecha(fechaDesdeId(postulacion._id))}</dd>
                 <dt>Oferta</dt>

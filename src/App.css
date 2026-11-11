@@ -617,6 +617,28 @@
   line-height: 1.6;
 }
 
+/* Categoría con miniatura de su imagen (detalle de una postulación) */
+.categoria-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.categoria-mini__imagen {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--color-borde);
+}
+
+.categoria-mini__imagen--vacia {
+  display: grid;
+  place-items: center;
+  background: var(--color-primario-suave);
+  color: var(--color-acento);
+}
+
 /* ===== Estados de una postulación ===== */
 .estado {
   display: inline-flex;
