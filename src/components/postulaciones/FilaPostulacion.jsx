@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router'
 import { toast } from 'react-toastify'
-import { Pencil, Trash2 } from 'lucide-react'
+import { Pencil, Sparkles, Tag, Trash2 } from 'lucide-react'
 import EstadoBadge from './EstadoBadge'
 import FilaEdicionPostulacion from './FilaEdicionPostulacion'
 import { eliminarPostulacionService } from '../../services/postulaciones.service'
@@ -14,6 +15,14 @@ const FilaPostulacion = ({ postulacion, onEliminada, onActualizada }) => {
   const [editando, setEditando] = useState(false)
   const [confirmando, setConfirmando] = useState(false)
   const [eliminando, setEliminando] = useState(false)
+
+  // La postulación trae la categoría sin imagen (solo _id y nombre).
+  // La imagen se busca en las categorías que ya están en Redux, sin pedir nada a la API
+  const categorias = useSelector(state => state.categorias.lista)
+  const categoriaCompleta = postulacion.categoria
+    ? categorias.find(c => c._id === postulacion.categoria._id)
+    : null
+  const imagenCategoria = categoriaCompleta?.imagenUrl
 
   const eliminar = async () => {
     setEliminando(true)
@@ -51,7 +60,20 @@ const FilaPostulacion = ({ postulacion, onEliminada, onActualizada }) => {
       </td>
       <td data-label="Empresa">{postulacion.empresa}</td>
       <td data-label="Categoría">
-        {postulacion.categoria ? capitalizar(postulacion.categoria.nombre) : 'Sin categoría'}
+        {postulacion.categoria ? (
+          <span className="categoria-mini">
+            {imagenCategoria ? (
+              <img src={imagenCategoria} alt="" className="categoria-mini__imagen" />
+            ) : (
+              <span className="categoria-mini__imagen categoria-mini__imagen--vacia">
+                <Tag size={14} aria-hidden="true" />
+              </span>
+            )}
+            {capitalizar(postulacion.categoria.nombre)}
+          </span>
+        ) : (
+          <span className="texto-suave">Sin categoría</span>
+        )}
       </td>
       <td data-label="Estado"><EstadoBadge estado={postulacion.estado} /></td>
       <td data-label="Agregada" className="texto-suave">
@@ -70,6 +92,15 @@ const FilaPostulacion = ({ postulacion, onEliminada, onActualizada }) => {
           </div>
         ) : (
           <div className="confirmar">
+            {/* Lleva al detalle, donde está la preparación de entrevista con IA */}
+            <Link
+              to={`/postulaciones/${postulacion._id}`}
+              className="btn-icono btn-icono--ia"
+              title="Ver detalle y preparar la entrevista con IA"
+              aria-label={`Ver detalle de ${postulacion.puesto} y preparar la entrevista`}
+            >
+              <Sparkles size={18} />
+            </Link>
             <button
               type="button"
               className="btn-icono"

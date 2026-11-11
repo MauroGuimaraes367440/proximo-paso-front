@@ -3,7 +3,7 @@ import { Tag } from 'lucide-react'
 import { obtenerCategoriaService } from '../../services/categorias.service'
 import { capitalizar } from '../../utils/textos'
 
-// Muestra la categoría de una postulación con su imagen.
+// Portada con la imagen de la categoría de una postulación (detalle).
 // La postulación solo trae { _id, nombre } de la categoría (el populate de la API),
 // así que la imagen se pide aparte con GET /categorias/:id
 const CategoriaPostulacion = ({ categoria }) => {
@@ -17,28 +17,26 @@ const CategoriaPostulacion = ({ categoria }) => {
         const datos = await obtenerCategoriaService(categoria._id)
         setImagenUrl(datos.imagenUrl || null)
       } catch {
-        // Si falla, no pasa nada grave: se muestra el nombre sin imagen
+        // Si falla, no pasa nada grave: se muestra la portada sin imagen
         setImagenUrl(null)
       }
     }
     cargar()
   }, [categoria])
 
-  if (!categoria) {
-    return <span className="texto-suave">Sin categoría</span>
-  }
-
   return (
-    <span className="categoria-mini">
+    <div className="portada-categoria">
       {imagenUrl ? (
-        <img src={imagenUrl} alt="" className="categoria-mini__imagen" />
+        <img src={imagenUrl} alt="" className="portada-categoria__imagen" />
       ) : (
-        <span className="categoria-mini__imagen categoria-mini__imagen--vacia">
-          <Tag size={16} aria-hidden="true" />
-        </span>
+        <div className="portada-categoria__imagen portada-categoria__imagen--vacia">
+          <Tag size={32} aria-hidden="true" />
+        </div>
       )}
-      {capitalizar(categoria.nombre)}
-    </span>
+      <span className="portada-categoria__nombre">
+        {categoria ? capitalizar(categoria.nombre) : 'Sin categoría'}
+      </span>
+    </div>
   )
 }
 

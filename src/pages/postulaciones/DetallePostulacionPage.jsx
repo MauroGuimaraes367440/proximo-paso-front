@@ -84,11 +84,10 @@ const DetallePostulacionPage = () => {
               </article>
             </div>
 
-            <aside className="tarjeta">
+            <aside className="tarjeta tarjeta--con-portada">
+              <CategoriaPostulacion categoria={postulacion.categoria} />
               <h2 className="tarjeta__titulo">Datos</h2>
               <dl className="datos">
-                <dt>Categoría</dt>
-                <dd><CategoriaPostulacion categoria={postulacion.categoria} /></dd>
                 <dt>Agregada</dt>
                 <dd>{formatearFecha(fechaDesdeId(postulacion._id))}</dd>
                 <dt>Oferta</dt>

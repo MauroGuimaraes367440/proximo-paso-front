@@ -171,6 +171,11 @@ a {
   color: var(--color-acento);
 }
 
+/* Variante para la acción de IA: siempre en violeta, para que se destaque */
+.btn-icono--ia {
+  color: var(--color-acento);
+}
+
 /* Variante para acciones destructivas (eliminar, salir) */
 .btn-icono--peligro:hover {
   background: var(--color-error-suave);

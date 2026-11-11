@@ -125,15 +125,19 @@
   font-weight: 700;
 }
 
+/* Usa todo el ancho disponible; en pantallas muy grandes se limita a 1600px
+   y se centra (margin auto) para que las filas no queden larguísimas */
 .app__contenido {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1600px;
+  margin: 0 auto;
   padding: 2rem 2.5rem;
 }
 
-/* Páginas con un formulario: más angostas para que se lean mejor */
+/* Páginas con un formulario: más angostas (se leen mejor) y centradas */
 .pagina-angosta {
-  max-width: 760px;
+  max-width: 820px;
+  margin: 0 auto;
 }
 
 /* ===== Encabezado de cada página ===== */
@@ -538,8 +542,9 @@
   font-weight: 600;
 }
 
+/* El puesto es un link al detalle: violeta claro para que se note que se puede tocar */
 .enlace-fila {
-  color: var(--color-texto);
+  color: var(--color-acento);
   text-decoration: none;
 }
 
@@ -560,7 +565,7 @@
 
 .detalle {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr 340px;
   gap: 1.25rem;
   align-items: start;
   margin-bottom: 1.25rem;
@@ -626,7 +631,45 @@
   line-height: 1.6;
 }
 
-/* Categoría con miniatura de su imagen (detalle de una postulación) */
+/* Portada de la categoría arriba de la tarjeta Datos (detalle de una postulación) */
+.tarjeta--con-portada {
+  overflow: hidden;
+}
+
+/* Márgenes negativos: la imagen se estira hasta los bordes de la tarjeta, sin el padding */
+.portada-categoria {
+  position: relative;
+  margin: -1.5rem -1.5rem 1.25rem;
+}
+
+.portada-categoria__imagen {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.portada-categoria__imagen--vacia {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgb(139 92 246 / 25%), var(--color-superficie));
+  color: var(--color-acento);
+}
+
+/* El nombre va encima de la imagen, abajo a la izquierda */
+.portada-categoria__nombre {
+  position: absolute;
+  left: 0.85rem;
+  bottom: 0.85rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgb(11 17 32 / 75%);
+  backdrop-filter: blur(4px);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Categoría con miniatura de su imagen (tabla de postulaciones) */
 .categoria-mini {
   display: inline-flex;
   align-items: center;
@@ -639,6 +682,13 @@
   border-radius: 8px;
   object-fit: cover;
   border: 1px solid var(--color-borde);
+}
+
+/* En la tabla la miniatura es un poco más chica */
+.tabla .categoria-mini__imagen {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 6px;
 }
 
 .categoria-mini__imagen--vacia {
