@@ -5,6 +5,7 @@ import { Plus } from 'lucide-react'
 import EncabezadoPagina from '../../components/common/EncabezadoPagina'
 import AlertaError from '../../components/common/AlertaError'
 import InformeUso from '../../components/resumen/InformeUso'
+import CambioPlan from '../../components/resumen/CambioPlan'
 import GraficoEstados from '../../components/resumen/GraficoEstados'
 import ResumenAdmin from '../../components/resumen/ResumenAdmin'
 import { contarPorEstadoService } from '../../services/postulaciones.service'
@@ -62,7 +63,11 @@ const DashboardPage = () => {
       ) : (
         !error && (
           <div className="resumen">
-            <InformeUso />
+            <div className="resumen__columna">
+              <InformeUso />
+              {/* El cambio de plan solo corresponde si el usuario es Plus */}
+              {usuario.plan === 'plus' && <CambioPlan />}
+            </div>
             <GraficoEstados />
           </div>
         )

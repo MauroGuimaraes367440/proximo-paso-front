@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux'
-import CambioPlan from './CambioPlan'
 import { LIMITE_PLUS } from '../../utils/planes'
 
 // Informe de uso: en Plus el porcentaje usado del límite, en Premium la cantidad
@@ -38,8 +37,6 @@ const InformeUso = () => {
               style={{ width: `${porcentaje}%` }}
             />
           </div>
-
-          <CambioPlan />
         </>
       ) : (
         <>

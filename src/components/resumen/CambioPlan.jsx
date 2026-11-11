@@ -25,16 +25,18 @@ const CambioPlan = () => {
     }
   }
 
+  // Componente aparte (requisito 6.1.2 de la letra): su propia tarjeta en el Resumen
   return (
-    <div className="cambio-plan">
+    <article className="tarjeta cambio-plan">
+      <h2 className="tarjeta__titulo">Plan Premium</h2>
       <p>
-        <strong>Pasate a Premium</strong> para registrar postulaciones sin límite.
+        Registrá <strong>postulaciones sin límite</strong>. Tu plan Plus permite hasta 4.
       </p>
       <button type="button" className="btn btn--premium" onClick={pasarAPremium} disabled={cambiando}>
         <Crown size={18} aria-hidden="true" />
         {cambiando ? 'Cambiando…' : 'Pasar a Premium'}
       </button>
-    </div>
+    </article>
   )
 }
 

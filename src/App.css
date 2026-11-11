@@ -224,15 +224,24 @@
   background: var(--color-error);
 }
 
+.resumen__columna {
+  display: grid;
+  gap: 1.25rem;
+}
+
+/* Tarjeta de Premium: borde y fondo dorados suaves para destacarla */
 .cambio-plan {
-  padding: 1rem;
-  border-radius: var(--radio);
-  background: var(--color-premium-suave);
+  border-color: rgb(251 191 36 / 35%);
+  background: linear-gradient(160deg, rgb(251 191 36 / 10%), var(--color-tarjeta) 60%);
+}
+
+.cambio-plan .tarjeta__titulo {
+  color: var(--color-premium);
 }
 
 .cambio-plan p {
-  margin-bottom: 0.75rem;
-  color: var(--color-premium);
+  margin-bottom: 1rem;
+  color: #cbd5e1;
 }
 
 .grafico {
