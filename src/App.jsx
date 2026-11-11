@@ -17,6 +17,7 @@ import CategoriasPage from './pages/categorias/CategoriasPage'
 import NotFoundPage from './pages/NotFoundPage'
 import ProtectedRoute from './app/guards/ProtectedRoute'
 import PublicRoute from './app/guards/PublicRoute'
+import AdminRoute from './app/guards/AdminRoute'
 
 function App() {
   return (
@@ -41,7 +42,10 @@ function App() {
                   pero React Router siempre prefiere la ruta fija antes que la variable */}
               <Route path="/postulaciones/:id" element={<DetallePostulacionPage />} />
               <Route path="/ofertas" element={<OfertasPage />} />
-              <Route path="/categorias" element={<CategoriasPage />} />
+              {/* Solo el admin */}
+              <Route element={<AdminRoute />}>
+                <Route path="/categorias" element={<CategoriasPage />} />
+              </Route>
             </Route>
           </Route>
 
