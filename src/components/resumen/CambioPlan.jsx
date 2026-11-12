@@ -15,9 +15,8 @@ const CambioPlan = () => {
     setCambiando(true)
     try {
       const datos = await cambiarPlanService()
-      // El usuario nuevo (con plan "premium") se guarda en los dos lugares:
-      guardarUsuario(datos.usuario)              // localStorage → sobrevive al F5
-      dispatch(actualizarUsuario(datos.usuario)) // Redux → la pantalla se actualiza ya
+      guardarUsuario(datos.usuario)
+      dispatch(actualizarUsuario(datos.usuario))
       toast.success('¡Ya sos Premium! Postulaciones ilimitadas.')
     } catch (error) {
       toast.error(obtenerError(error).mensaje)
@@ -25,7 +24,6 @@ const CambioPlan = () => {
     }
   }
 
-  // Componente aparte (requisito 6.1.2 de la letra): su propia tarjeta en el Resumen
   return (
     <article className="tarjeta cambio-plan">
       <h2 className="tarjeta__titulo">Plan Premium</h2>

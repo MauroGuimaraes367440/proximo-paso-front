@@ -5,7 +5,6 @@ import { ArrowUpRight, BriefcaseBusiness, LayoutDashboard, LogOut, Search, Tags 
 import { desloguear } from '../../features/auth/auth.slice'
 import { borrarSesionGuardada } from '../../utils/sesion'
 
-// Menú de cada rol: el admin gestiona categorías (y no tiene postulaciones)
 const enlacesUsuario = [
   { to: '/dashboard', texto: 'Resumen', Icono: LayoutDashboard },
   { to: '/postulaciones', texto: 'Postulaciones', Icono: BriefcaseBusiness },

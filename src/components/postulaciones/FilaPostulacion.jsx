@@ -10,14 +10,11 @@ import { obtenerError } from '../../utils/errores'
 import { fechaDesdeId, formatearFecha } from '../../utils/fechas'
 import { capitalizar } from '../../utils/textos'
 
-// Una fila de la tabla. Cada fila tiene su propio estado (si se está editando o borrando)
 const FilaPostulacion = ({ postulacion, onEliminada, onActualizada }) => {
   const [editando, setEditando] = useState(false)
   const [confirmando, setConfirmando] = useState(false)
   const [eliminando, setEliminando] = useState(false)
 
-  // La postulación trae la categoría sin imagen (solo _id y nombre).
-  // La imagen se busca en las categorías que ya están en Redux, sin pedir nada a la API
   const categorias = useSelector(state => state.categorias.lista)
   const categoriaCompleta = postulacion.categoria
     ? categorias.find(c => c._id === postulacion.categoria._id)
@@ -42,7 +39,6 @@ const FilaPostulacion = ({ postulacion, onEliminada, onActualizada }) => {
     onActualizada()
   }
 
-  // En modo edición se dibuja la otra versión de la fila
   if (editando) {
     return (
       <FilaEdicionPostulacion
@@ -92,7 +88,6 @@ const FilaPostulacion = ({ postulacion, onEliminada, onActualizada }) => {
           </div>
         ) : (
           <div className="confirmar">
-            {/* Lleva al detalle, donde está la preparación de entrevista con IA */}
             <Link
               to={`/postulaciones/${postulacion._id}`}
               className="btn-icono btn-icono--ia"

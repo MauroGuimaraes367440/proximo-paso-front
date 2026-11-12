@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// Igual que el groq.slice de clase: guarda la última respuesta de la IA
 const preparacionSlice = createSlice({
   name: 'preparacion',
   initialState: {

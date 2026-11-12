@@ -5,7 +5,6 @@ export const fechaDesdeId = (id) => {
   return new Date(segundos * 1000)
 }
 
-// Ej: "7 nov 2026"
 export const formatearFecha = (fecha) => {
   return fecha.toLocaleDateString('es-UY', { day: 'numeric', month: 'short', year: 'numeric' })
 }

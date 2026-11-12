@@ -1,11 +1,8 @@
 import Joi from 'joi'
 import { ESTADOS } from '../utils/estados'
 
-// Mismas reglas que valida la API (postulaciones.validator.js del backend)
-
 const ESTADOS_VALIDOS = ESTADOS.map(e => e.valor)
 
-// Formulario de alta: los 7 campos que acepta la API
 export const crearPostulacionSchema = Joi.object({
   puesto: Joi.string().trim().min(2).max(100).required().messages({
     'string.empty': 'El puesto es obligatorio',
@@ -33,7 +30,6 @@ export const crearPostulacionSchema = Joi.object({
     'string.max': 'La descripción no puede superar los {#limit} caracteres',
     'any.required': 'La descripción es obligatoria'
   }),
-  // Opcionales: allow('') permite dejarlos vacíos (la API también lo permite)
   enlace: Joi.string().trim().uri({ scheme: ['http', 'https'] }).max(2000).allow('').messages({
     'string.uri': 'Ingresá un enlace válido (empezando con http:// o https://)',
     'string.uriCustomScheme': 'El enlace debe empezar con http:// o https://',
@@ -44,7 +40,6 @@ export const crearPostulacionSchema = Joi.object({
   })
 })
 
-// Campos que se editan directamente en la fila de la tabla
 export const editarFilaSchema = Joi.object({
   puesto: Joi.string().trim().min(2).max(100).required().messages({
     'string.empty': 'El puesto es obligatorio',

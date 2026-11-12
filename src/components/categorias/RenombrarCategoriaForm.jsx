@@ -5,7 +5,6 @@ import { categoriaSchema } from '../../validators/categorias.validators'
 import { renombrarCategoriaService } from '../../services/categorias.service'
 import { obtenerError } from '../../utils/errores'
 
-// Mismo esquema que crear; arranca con el nombre actual
 const RenombrarCategoriaForm = ({ categoria, onCancelar, onListo }) => {
   const { register, handleSubmit, formState: { errors, isValid, isSubmitting } } = useForm({
     resolver: joiResolver(categoriaSchema),

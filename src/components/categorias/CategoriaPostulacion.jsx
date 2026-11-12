@@ -3,7 +3,6 @@ import { Tag } from 'lucide-react'
 import { obtenerCategoriaService } from '../../services/categorias.service'
 import { capitalizar } from '../../utils/textos'
 
-// Portada con la imagen de la categoría de una postulación (detalle).
 // La postulación solo trae { _id, nombre } de la categoría (el populate de la API),
 // así que la imagen se pide aparte con GET /categorias/:id
 const CategoriaPostulacion = ({ categoria }) => {
@@ -17,7 +16,6 @@ const CategoriaPostulacion = ({ categoria }) => {
         const datos = await obtenerCategoriaService(categoria._id)
         setImagenUrl(datos.imagenUrl || null)
       } catch {
-        // Si falla, no pasa nada grave: se muestra la portada sin imagen
         setImagenUrl(null)
       }
     }

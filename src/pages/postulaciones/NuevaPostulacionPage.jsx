@@ -11,7 +11,6 @@ import { LIMITE_PLUS } from '../../utils/planes'
 import { limpiarHtml } from '../../utils/textos'
 
 // Convierte una oferta de Jooble en los valores iniciales del formulario.
-// slice() corta los textos al máximo que acepta la API
 const valoresDesdeOferta = (oferta) => ({
   puesto: limpiarHtml(oferta.puesto).slice(0, 100),
   empresa: limpiarHtml(oferta.empresa).slice(0, 100),

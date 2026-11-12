@@ -36,7 +36,6 @@ const RegisterForm = () => {
       return
     }
 
-    // Auto-login: el registro no devuelve token, así que iniciamos sesión
     try {
       const sesion = await loginService(credenciales)
       dispatch(loguear(sesion))

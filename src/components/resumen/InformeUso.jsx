@@ -1,14 +1,12 @@
 import { useSelector } from 'react-redux'
 import { LIMITE_PLUS } from '../../utils/planes'
 
-// Informe de uso: en Plus el porcentaje usado del límite, en Premium la cantidad
 const InformeUso = () => {
   const usuario = useSelector(state => state.auth.usuario)
   const total = useSelector(state => state.resumen.total)
 
   const esPlus = usuario.plan === 'plus'
 
-  // Math.min: si por algún motivo hubiera más de 4, la barra no pasa del 100%
   const porcentaje = Math.min(Math.round((total / LIMITE_PLUS) * 100), 100)
 
   return (
@@ -23,7 +21,6 @@ const InformeUso = () => {
           <p className="uso__numero">{porcentaje}%</p>
           <p className="texto-suave">{total} de {LIMITE_PLUS} postulaciones usadas</p>
 
-          {/* La barra: el ancho del relleno es el porcentaje */}
           <div
             className="barra"
             role="progressbar"

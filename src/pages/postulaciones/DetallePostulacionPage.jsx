@@ -19,7 +19,6 @@ const DetallePostulacionPage = () => {
   const dispatch = useDispatch()
   const hayPreparacion = useSelector(state => state.preparacion.texto) !== ''
 
-  // La postulación solo la usa esta página, por eso va en useState y no en Redux
   const [postulacion, setPostulacion] = useState(null)
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
@@ -43,8 +42,6 @@ const DetallePostulacionPage = () => {
     cargar()
   }, [id])
 
-  // Al salir de la página se borra la preparación (igual que UploadsPage de clase),
-  // así no aparece la de esta postulación al entrar a otra
   useEffect(() => {
     return () => {
       dispatch(resetPreparacion())
@@ -60,7 +57,6 @@ const DetallePostulacionPage = () => {
 
       {cargando && <p className="tarjeta texto-suave">Cargando postulación…</p>}
 
-      {/* Ej: un id que no existe → la API responde 404 "La postulación no existe" */}
       <AlertaError error={error} />
 
       {!cargando && postulacion && (
@@ -93,7 +89,6 @@ const DetallePostulacionPage = () => {
                 <dt>Oferta</dt>
                 <dd>
                   {postulacion.enlace ? (
-                    // target="_blank" abre otra pestaña; rel="noreferrer" es por seguridad
                     <a href={postulacion.enlace} target="_blank" rel="noreferrer" className="enlace-externo">
                       Ver oferta <ExternalLink size={14} aria-hidden="true" />
                     </a>

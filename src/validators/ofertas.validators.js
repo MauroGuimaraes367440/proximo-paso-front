@@ -1,6 +1,5 @@
 import Joi from 'joi'
 
-// Mismas reglas que valida la API (ofertas.validator.js del backend): los dos obligatorios
 export const busquedaOfertasSchema = Joi.object({
   busqueda: Joi.string().trim().min(2).max(100).required().messages({
     'string.empty': 'Escribí qué puesto buscás',

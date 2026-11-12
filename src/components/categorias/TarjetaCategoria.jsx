@@ -7,13 +7,10 @@ import { eliminarCategoriaService } from '../../services/categorias.service'
 import { obtenerError } from '../../utils/errores'
 import { capitalizar } from '../../utils/textos'
 
-// Una tarjeta por categoría. "modo" dice qué se muestra abajo de la imagen:
-// 'normal' (nombre + botones), 'renombrar', 'imagen' o 'borrar' (confirmación)
 const TarjetaCategoria = ({ categoria, onCambio }) => {
   const [modo, setModo] = useState('normal')
   const [eliminando, setEliminando] = useState(false)
 
-  // Después de guardar algo: vuelve a modo normal y avisa a la página para que recargue
   const alTerminar = () => {
     setModo('normal')
     onCambio()
@@ -26,7 +23,6 @@ const TarjetaCategoria = ({ categoria, onCambio }) => {
       toast.success('Categoría eliminada')
       onCambio()
     } catch (error) {
-      // Ej: 409 "No se puede eliminar una categoría con postulaciones asociadas"
       toast.error(obtenerError(error).mensaje)
       setEliminando(false)
       setModo('normal')

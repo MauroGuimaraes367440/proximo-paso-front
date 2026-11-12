@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowUpRight } from 'lucide-react'
 
-// Barra superior de las páginas sin sesión (login, registro y 404)
 const Header = () => {
   return (
     <header className="header">

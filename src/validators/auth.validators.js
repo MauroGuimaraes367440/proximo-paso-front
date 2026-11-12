@@ -1,7 +1,5 @@
 import Joi from 'joi'
 
-// Mismas reglas que valida la API (auth.validator.js del backend)
-
 export const loginSchema = Joi.object({
   username: Joi.string().trim().required().messages({
     'string.empty': 'Ingresá tu usuario',

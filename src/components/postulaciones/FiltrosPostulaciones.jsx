@@ -3,8 +3,6 @@ import { X } from 'lucide-react'
 import { ESTADOS } from '../../utils/estados'
 import { capitalizar } from '../../utils/textos'
 
-// Selects "controlados": su valor lo decide el padre (que lo lee de la URL)
-// y cada cambio se le avisa con onCambiar(nombreDelFiltro, valorNuevo)
 const FiltrosPostulaciones = ({ estado, categoria, categorias, onCambiar, onLimpiar }) => {
   const estadoId = useId()
   const categoriaId = useId()

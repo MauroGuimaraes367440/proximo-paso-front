@@ -1,4 +1,3 @@
-// Muestra en pantalla el error que devolvió la API (ver utils/errores.js)
 const AlertaError = ({ error }) => {
   if (!error) return null
 

@@ -29,7 +29,6 @@ const PostulacionesPage = () => {
   // Contador que se suma para volver a pedir la lista (ej: después de borrar)
   const [recargas, setRecargas] = useState(0)
 
-  // Se vuelve a ejecutar cada vez que cambia la página o algún filtro
   useEffect(() => {
     const cargar = async () => {
       setCargando(true)
@@ -52,7 +51,6 @@ const PostulacionesPage = () => {
     cargar()
   }, [paginaPedida, estado, categoria, recargas, dispatch])
 
-  // Copia los parámetros actuales, cambia uno y vuelve a la página 1
   const cambiarFiltro = (nombre, valor) => {
     const nuevos = new URLSearchParams(searchParams)
     if (valor) {
@@ -68,20 +66,16 @@ const PostulacionesPage = () => {
     setSearchParams({})
   }
 
-  // Cambia la página sin perder los filtros
   const cambiarPagina = (nueva) => {
     const nuevos = new URLSearchParams(searchParams)
     nuevos.set('page', nueva)
     setSearchParams(nuevos)
   }
 
-  // Vuelve a pedir la página actual con los mismos filtros
   const recargar = () => {
     setRecargas(recargas + 1)
   }
 
-  // Si se borró la última fila de una página que no es la primera, se va a la anterior.
-  // Si no, se recarga (así se actualizan el total y la paginación)
   const alEliminar = () => {
     if (lista.length === 1 && paginaPedida > 1) {
       cambiarPagina(paginaPedida - 1)

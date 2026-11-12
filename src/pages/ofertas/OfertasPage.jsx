@@ -30,7 +30,6 @@ const OfertasPage = () => {
 
   const hayBusqueda = busqueda !== '' && ubicacion !== ''
 
-  // Cada vez que cambia la búsqueda o la página en la URL, se consulta la API
   useEffect(() => {
     if (!hayBusqueda) return
 
@@ -41,7 +40,6 @@ const OfertasPage = () => {
         const datos = await buscarOfertasService({ busqueda, ubicacion, page: paginaPedida })
         dispatch(setOfertas(datos))
       } catch (err) {
-        // Ej: 503 "No se pudo consultar Jooble. Intentá nuevamente más tarde"
         setError(obtenerError(err))
       } finally {
         setCargando(false)
@@ -50,7 +48,6 @@ const OfertasPage = () => {
     buscar()
   }, [hayBusqueda, busqueda, ubicacion, paginaPedida, dispatch])
 
-  // El buscador avisa con los datos ya validados; se ponen en la URL (página 1)
   const alBuscar = (datos) => {
     setSearchParams({ busqueda: datos.busqueda, ubicacion: datos.ubicacion })
   }

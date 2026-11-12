@@ -8,13 +8,10 @@ import {
 import { Doughnut } from 'react-chartjs-2'
 import { ESTADOS } from '../../utils/estados'
 
-// Igual que el TemperatureChart de clase: lee los datos de Redux y arma el gráfico
 const GraficoEstados = () => {
   const conteos = useSelector(state => state.resumen.conteos)
   const total = useSelector(state => state.resumen.total)
 
-  // Chart.js trae cada pieza por separado y hay que "registrar" las que se usan.
-  // La dona usa ArcElement (los arcos); Tooltip y Legend son el cartelito y las referencias
   ChartJS.register(ArcElement, Tooltip, Legend)
 
   const options = {
@@ -23,13 +20,11 @@ const GraficoEstados = () => {
     plugins: {
       legend: {
         position: 'right',
-        // Colores del tema oscuro (por defecto Chart.js usa gris sobre blanco)
         labels: { color: '#cbd5e1', boxWidth: 12, padding: 14 }
       }
     }
   }
 
-  // Un dato por estado, en el mismo orden que ESTADOS
   const data = {
     labels: ESTADOS.map(e => e.texto),
     datasets: [
@@ -37,7 +32,7 @@ const GraficoEstados = () => {
         label: 'Postulaciones',
         data: ESTADOS.map(e => conteos[e.valor]),
         backgroundColor: ESTADOS.map(e => e.color),
-        borderColor: '#1e293b', // mismo color que la tarjeta: separa los arcos
+        borderColor: '#1e293b',
         borderWidth: 3
       }
     ]

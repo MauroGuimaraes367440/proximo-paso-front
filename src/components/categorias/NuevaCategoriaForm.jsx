@@ -11,7 +11,6 @@ import { capitalizar } from '../../utils/textos'
 const NuevaCategoriaForm = ({ onCreada }) => {
   const nombreId = useId()
 
-  // reset: vuelve los campos a vacío (para crear otra después de guardar)
   const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitting } } = useForm({
     resolver: joiResolver(categoriaSchema),
     mode: 'onChange',
@@ -25,7 +24,6 @@ const NuevaCategoriaForm = ({ onCreada }) => {
       reset()
       onCreada()
     } catch (error) {
-      // Ej: 409 "La categoría ya existe"
       toast.error(obtenerError(error).mensaje)
     }
   }

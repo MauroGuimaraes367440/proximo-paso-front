@@ -1,7 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-// No sabe nada de postulaciones: recibe la página actual, el total
-// y una función para avisarle al padre a qué página ir
 const Paginacion = ({ page, totalPages, onCambiar }) => {
   if (totalPages <= 1) return null
 

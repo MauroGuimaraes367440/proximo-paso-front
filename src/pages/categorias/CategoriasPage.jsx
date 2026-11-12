@@ -9,12 +9,8 @@ import { setCategorias } from '../../features/categorias/categorias.slice'
 
 const CategoriasPage = () => {
   const dispatch = useDispatch()
-  // Las categorías ya están en Redux: las cargó AppLayout al entrar a la app
   const categorias = useSelector(state => state.categorias.lista)
 
-  // Después de crear, renombrar, subir imagen o borrar: se vuelven a pedir
-  // y se actualiza Redux. Como Redux es compartido, también se actualizan
-  // los filtros y formularios de postulaciones de toda la app
   const recargar = async () => {
     try {
       const datos = await listarCategoriasService()

@@ -20,8 +20,6 @@ const DashboardPage = () => {
   const [cargando, setCargando] = useState(!esAdmin)
   const [error, setError] = useState(null)
 
-  // Al entrar: se cuentan las postulaciones por estado y se guardan en Redux.
-  // El admin no tiene postulaciones (la API le respondería 403), así que no se pide nada
   useEffect(() => {
     if (esAdmin) return
 
@@ -65,7 +63,6 @@ const DashboardPage = () => {
           <div className="resumen">
             <div className="resumen__columna">
               <InformeUso />
-              {/* El cambio de plan solo corresponde si el usuario es Plus */}
               {usuario.plan === 'plus' && <CambioPlan />}
             </div>
             <GraficoEstados />

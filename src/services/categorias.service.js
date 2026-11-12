@@ -1,15 +1,13 @@
 import api from '../api/api'
 
-// Cualquier usuario logueado puede listar categorías (las usa en filtros y formularios)
 export const listarCategoriasService = async () => {
   const res = await api.get('/categorias')
-  return res.data // [{ _id, nombre, imagenUrl }]
+  return res.data
 }
 
-// Una sola categoría por id (con su imagen). La usa el detalle de una postulación
 export const obtenerCategoriaService = async (id) => {
   const res = await api.get(`/categorias/${id}`)
-  return res.data // { _id, nombre, imagenUrl }
+  return res.data
 }
 
 // --- Solo admin (la API responde 403 a un usuario común) ---
@@ -29,12 +27,10 @@ export const eliminarCategoriaService = async (id) => {
   return res.data
 }
 
-// Igual que el UploadForm de clase: el archivo viaja en un FormData,
-// en el campo "imagen" (el nombre que espera multer en la API)
 export const subirImagenCategoriaService = async (id, archivo) => {
   const formData = new FormData()
   formData.append('imagen', archivo)
 
   const res = await api.post(`/categorias/${id}/imagen`, formData)
-  return res.data // { message, categoria }
+  return res.data
 }

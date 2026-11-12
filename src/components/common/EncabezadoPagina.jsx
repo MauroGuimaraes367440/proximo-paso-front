@@ -1,4 +1,3 @@
-// Título de cada página de la app. "children" son acciones opcionales (ej: un botón "Nueva")
 const EncabezadoPagina = ({ titulo, descripcion, children }) => {
   return (
     <header className="encabezado">

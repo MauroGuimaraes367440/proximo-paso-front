@@ -6,13 +6,10 @@ import Sidebar from '../components/layout/Sidebar'
 import { listarCategoriasService } from '../services/categorias.service'
 import { setCategorias } from '../features/categorias/categorias.slice'
 
-// Diseño de la app con sesión iniciada: menú a la izquierda y la página a la derecha
 const AppLayout = () => {
   const dispatch = useDispatch()
   const categorias = useSelector(state => state.categorias.lista)
 
-  // Las categorías las usan varias páginas (filtros, alta, edición).
-  // Se piden una sola vez acá, al entrar a la app, y quedan en Redux
   useEffect(() => {
     if (categorias.length > 0) return
 

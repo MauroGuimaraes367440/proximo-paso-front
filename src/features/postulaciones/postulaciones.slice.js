@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { desloguear } from '../auth/auth.slice'
 
-// Guarda la página de postulaciones que se está viendo, tal como la devuelve la API
 const initialState = {
   lista: [],
   page: 1,

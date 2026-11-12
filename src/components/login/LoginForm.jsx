@@ -17,7 +17,6 @@ const LoginForm = () => {
   const dispatch = useDispatch()
   const [errorApi, setErrorApi] = useState(null)
 
-  // mode 'onChange': valida mientras se escribe, así isValid está siempre al día
   const { register, handleSubmit, formState: { errors, isValid, isSubmitting } } = useForm({
     resolver: joiResolver(loginSchema),
     mode: 'onChange'

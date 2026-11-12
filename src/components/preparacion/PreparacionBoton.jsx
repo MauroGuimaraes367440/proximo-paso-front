@@ -6,7 +6,6 @@ import { generarPreparacionService } from '../../services/postulaciones.service'
 import { setPreparacion } from '../../features/preparacion/preparacion.slice'
 import { obtenerError } from '../../utils/errores'
 
-// Como el GroqForm de clase, pero sin inputs: la API ya sabe de qué postulación se trata
 const PreparacionBoton = ({ postulacionId, yaGenerada }) => {
   const dispatch = useDispatch()
   const [generando, setGenerando] = useState(false)

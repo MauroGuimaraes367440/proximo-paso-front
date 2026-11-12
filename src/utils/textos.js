@@ -1,4 +1,3 @@
-// La API guarda las categorías en minúscula ("tecnología"); para mostrarlas: "Tecnología"
 export const capitalizar = (texto) => {
   if (!texto) return ''
   return texto.charAt(0).toUpperCase() + texto.slice(1)
@@ -9,11 +8,11 @@ export const capitalizar = (texto) => {
 export const limpiarHtml = (texto) => {
   if (!texto) return ''
   return texto
-    .replace(/<[^>]*>/g, ' ')   // saca cualquier etiqueta <...>
+    .replace(/<[^>]*>/g, ' ')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/\s+/g, ' ')       // varios espacios seguidos → uno
+    .replace(/\s+/g, ' ')
     .trim()
 }

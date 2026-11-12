@@ -1,5 +1,3 @@
-// Convierte un error de axios en un mensaje para mostrar en pantalla.
-// La API responde { message, errores? } (errores = lista de validaciones Joi).
 export const obtenerError = (error) => {
   if (!error.response) {
     return {

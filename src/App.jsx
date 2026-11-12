@@ -24,7 +24,6 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          {/* Sin sesión: header simple arriba */}
           <Route element={<PublicRoute />}>
             <Route element={<ContainerPage />}>
               <Route path="/" element={<LoginPage />} />
@@ -32,7 +31,6 @@ function App() {
             </Route>
           </Route>
 
-          {/* Con sesión: barra lateral */}
           <Route element={<ProtectedRoute />}>
             <Route element={<AppLayout />}>
               <Route path="/dashboard" element={<DashboardPage />} />
@@ -42,14 +40,12 @@ function App() {
                   pero React Router siempre prefiere la ruta fija antes que la variable */}
               <Route path="/postulaciones/:id" element={<DetallePostulacionPage />} />
               <Route path="/ofertas" element={<OfertasPage />} />
-              {/* Solo el admin */}
               <Route element={<AdminRoute />}>
                 <Route path="/categorias" element={<CategoriasPage />} />
               </Route>
             </Route>
           </Route>
 
-          {/* Cualquier otra dirección */}
           <Route element={<ContainerPage />}>
             <Route path="*" element={<NotFoundPage />} />
           </Route>

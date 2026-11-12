@@ -11,7 +11,6 @@ import { obtenerError } from '../../utils/errores'
 import { ESTADOS } from '../../utils/estados'
 import { capitalizar } from '../../utils/textos'
 
-// valoresIniciales: datos opcionales para precargar (ej: desde una oferta de Jooble)
 const PostulacionForm = ({ valoresIniciales }) => {
   const puestoId = useId()
   const empresaId = useId()
@@ -36,7 +35,6 @@ const PostulacionForm = ({ valoresIniciales }) => {
       descripcion: '',
       enlace: '',
       notas: '',
-      // Lo que venga en valoresIniciales pisa los valores vacíos de arriba
       ...valoresIniciales
     }
   })
@@ -48,7 +46,6 @@ const PostulacionForm = ({ valoresIniciales }) => {
       toast.success('Postulación agregada')
       navigate('/postulaciones')
     } catch (error) {
-      // Ej: "Alcanzaste el límite de 4 postulaciones del plan plus"
       setErrorApi(obtenerError(error))
     }
   }

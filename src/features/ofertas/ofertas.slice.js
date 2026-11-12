@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { desloguear } from '../auth/auth.slice'
 
-// Los resultados de la última búsqueda en Jooble (como forecast.slice en clase)
 const initialState = {
   lista: [],
   page: 1,

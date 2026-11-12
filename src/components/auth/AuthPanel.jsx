@@ -1,5 +1,3 @@
-// Estructura compartida por Login y Registro: presentación a la izquierda,
-// formulario (children) a la derecha
 const AuthPanel = ({ titulo, subtitulo, children }) => {
   return (
     <section className="auth">

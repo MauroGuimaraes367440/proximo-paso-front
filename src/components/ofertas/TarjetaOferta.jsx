@@ -32,7 +32,6 @@ const TarjetaOferta = ({ oferta }) => {
         <a href={oferta.enlace} target="_blank" rel="noreferrer" className="btn btn--secundario btn--chico">
           Ver en Jooble <ExternalLink size={14} aria-hidden="true" />
         </a>
-        {/* El admin no tiene postulaciones (la API le respondería 403) */}
         {!esAdmin && (
           <button type="button" className="btn btn--primario btn--chico" onClick={guardarComoPostulacion}>
             <BookmarkPlus size={16} aria-hidden="true" />

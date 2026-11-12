@@ -3,10 +3,9 @@ import { ESTADOS } from '../utils/estados'
 
 // Todas las llamadas a /postulaciones. El token lo agrega el interceptor de api.js
 
-// params: { page, limit, estado, categoria } → viajan como ?page=1&limit=10...
 export const listarPostulacionesService = async (params) => {
   const res = await api.get('/postulaciones', { params })
-  return res.data // { postulaciones, page, limit, total, totalPages }
+  return res.data
 }
 
 export const obtenerPostulacionService = async (id) => {
@@ -31,7 +30,6 @@ export const eliminarPostulacionService = async (id) => {
 
 // Cuenta las postulaciones de cada estado: un pedido por estado con limit=1,
 // del que solo interesa el "total" que devuelve la API.
-// Resultado: { guardada: 2, enviada: 1, entrevista: 0, aceptada: 0, rechazada: 1 }
 export const contarPorEstadoService = async () => {
   const conteos = {}
   for (const estado of ESTADOS) {
@@ -41,8 +39,7 @@ export const contarPorEstadoService = async () => {
   return conteos
 }
 
-// La API le pasa puesto, empresa y descripción a Groq y devuelve el texto generado
 export const generarPreparacionService = async (id) => {
   const res = await api.post(`/postulaciones/${id}/preparacion`)
-  return res.data // { postulacionId, preparacion }
+  return res.data
 }

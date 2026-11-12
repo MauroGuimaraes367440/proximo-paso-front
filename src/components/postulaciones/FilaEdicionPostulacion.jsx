@@ -10,11 +10,9 @@ import { ESTADOS } from '../../utils/estados'
 import { capitalizar } from '../../utils/textos'
 import { fechaDesdeId, formatearFecha } from '../../utils/fechas'
 
-// La fila en modo edición: los textos se convierten en inputs
 const FilaEdicionPostulacion = ({ postulacion, onCancelar, onGuardada }) => {
   const categorias = useSelector(state => state.categorias.lista)
 
-  // defaultValues: el formulario arranca con los datos actuales de la postulación
   const { register, handleSubmit, formState: { errors, isValid, isSubmitting } } = useForm({
     resolver: joiResolver(editarFilaSchema),
     mode: 'onChange',
